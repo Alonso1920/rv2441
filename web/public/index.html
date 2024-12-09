@@ -1,0 +1,87 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8" /> 
+     <title>Archivo base</title>
+     <style>
+     </style>
+</head>
+<body>
+<canvas id="myCanvas">
+    <!--El elemento HTML canvas se puede utilizar para dibujar gráficos a través de 
+        secuencias de comandos (por lo general JavaScript ).-->
+</canvas>
+<script type="importmap"> 
+    {
+        "imports":{
+            "three": "./js/three.module.js",
+            "three/VRButton": "./js/VRButton.js"
+        }
+}
+</script>
+<script type="module"> 
+    //👉🏽 Mandar llamar a la librería
+    import * as THREE from 'three'; 
+    import { VRButton } from 'three/VRButton';
+ //   import {OrbitControls} from 'three/OrbitControls';
+  //  console.log(OrbitControls);
+
+    //👉🏽 Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('myCanvas'),antialias: true});
+    renderer.setPixelRatio(window.decivePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x85929E);
+
+    renderer.xr.enabled = true;///////////////////////////////////////////////////////////// Añadir estas Dos lineas
+    renderer.xr.setReferenceSpaceType( 'local' );/////////////////////////////////////////// Para habilitar el VR
+
+    document.body.appendChild( renderer.domElement );///////////////////////////////////////// Añadir estas Dos lineas
+    document.body.appendChild( VRButton.createButton( renderer ) );/////////////////////////// PAra habilitar el boton en el navegador
+
+    //🎬 Creando nueva escena 
+    var scene = new THREE.Scene();
+
+    //🎥 Agregar una cámara de perspectiva
+    var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 5000);
+    scene.add(camera);
+
+    //👉🏽Settings de la cámara
+  //  camera.position.set(0, 4, -25);
+  camera.position.set(0, 10, 10);
+
+//👉🏽Añadiendo los OrbitControls
+// var controls = new OrbitControls(camera, renderer.domElement);
+// controls.enableDamping = true;
+// controls.dampingFactor = 0.05;
+
+    //✏️GridHelper
+    const gridHelper = new THREE.GridHelper(50,10);
+    scene.add (gridHelper);
+
+    //✏️Ejes
+    
+  
+
+    // 🪄🪄 SECCIÓN DE CÓDIGO 🪄🪄
+    
+        import camañafinal from "./js/cabaña.js"
+
+        var light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+        light2.position.set(15,10,15);
+        light2.target.position.set(0, 0, 0);
+        var cabaña1 = camañafinal({x:0,y:0,z:0});
+        scene.add(cabaña1,light2);
+
+        var cube = new THREE.BoxGeometry(1,1,1);
+        var verde = new THREE.MeshLambertMaterial({})
+        
+
+         //🎰🎰Rendering y animación
+    function render (){
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+    renderer.setAnimationLoop( render );
+   </script>
+</body>
+</html>

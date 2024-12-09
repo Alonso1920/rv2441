@@ -264,19 +264,19 @@ export default function cabañaCOMPLETA({x,y,z}){
 
 //CUADROS
     var c= new THREE.BoxGeometry(9,13,0.5,16,16,16);
-    var texture= new THREE.TextureLoader().load("./imagenes/c1.jpeg");
+    var texture= new THREE.TextureLoader().load("./imagenes/c1.jpg");
     var mc= new THREE.MeshLambertMaterial({ map:texture });
     var meshc= new THREE.Mesh(c,mc);
     meshc.position.set(-12,12,-19);
 
     var c2= new THREE.BoxGeometry(0.5,14,16,16,16,16);
-    var texture= new THREE.TextureLoader().load("./imagenes/c2.jpeg");
+    var texture= new THREE.TextureLoader().load("./imagenes/c2.jpg");
     var mc2= new THREE.MeshLambertMaterial({ map:texture });
     var meshc2= new THREE.Mesh(c2,mc2);
     meshc2.position.set(21,12,-5);
 
     var c3= new THREE.BoxGeometry(0.5,10,10,16,16,16);
-    var texture= new THREE.TextureLoader().load("./imagenes/c3.jpeg");
+    var texture= new THREE.TextureLoader().load("./imagenes/c3.jpg");
     var mc3= new THREE.MeshLambertMaterial({ map:texture });
     var meshc3= new THREE.Mesh(c3,mc2);
     meshc3.position.set(-19,13,-10);
